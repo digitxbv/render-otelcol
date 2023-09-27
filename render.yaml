@@ -35,3 +35,6 @@ services:
     dockerfilePath: ./otelcol/Dockerfile
     dockerContext: ./otelcol
     dockerCommand: /otelcol --config=/etc/otelcol/config.yaml
+    envVars:
+      - key: PORT
+        value: 4318

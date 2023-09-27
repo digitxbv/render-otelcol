@@ -5,7 +5,6 @@ receivers:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
-        metrics_url_path: /otel/http/v1/metrics
 processors:
   batch:
   # memory_limiter:
