@@ -35,9 +35,9 @@ services:
     dockerfilePath: ./otelcol/Dockerfile
     dockerContext: ./otelcol
     dockerCommand: /otelcol --config=/etc/otelcol/config.yaml
-    envVars:
-      # Setting the PORT environment variable tells render that the service is
-      # listening to 4317 It is important to set this value statically as it is
-      # used in the otelcol/otel-collector-config.yaml config file.
-      - key: PORT
-        value: 4317
+    # envVars:
+    #   # Setting the PORT environment variable tells render that the service is
+    #   # listening to 4317 It is important to set this value statically as it is
+    #   # used in the otelcol/otel-collector-config.yaml config file.
+    #   - key: PORT
+    #     value: 4317
