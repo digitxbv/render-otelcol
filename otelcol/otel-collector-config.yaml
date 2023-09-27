@@ -8,17 +8,17 @@ receivers:
         metrics_url_path: /otel/http/v1/metrics
 processors:
   batch:
-  memory_limiter:
-    # 80% of maximum memory up to 2G
-    limit_mib: 400
-    # 25% of limit up to 2G
-    spike_limit_mib: 300
-    check_interval: 5s
+  # memory_limiter:
+  #   # 80% of maximum memory up to 2G
+  #   limit_mib: 400
+  #   # 25% of limit up to 2G
+  #   spike_limit_mib: 300
+  #   check_interval: 5s
 extensions:
   health_check:
-  memory_ballast:
-    # Memory Ballast size should be max 1/3 to 1/2 of memory.
-    size_mib: 200
+  # memory_ballast:
+  #   # Memory Ballast size should be max 1/3 to 1/2 of memory.
+  #   size_mib: 200
 exporters:
   prometheusremotewrite:
     # TODO: Make a wrapper script that will rewrite this environment variable
@@ -26,9 +26,9 @@ exporters:
     resource_to_telemetry_conversion:
       enabled: true # Convert resource attributes to metric labels
 service:
-  extensions: [health_check, memory_ballast]
+  extensions: [health_check]
   pipelines:
     metrics/1:
       receivers: [otlp]
-      processors: [memory_limiter, batch]
+      processors: [batch]
       exporters: [prometheusremotewrite]
