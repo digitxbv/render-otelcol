@@ -9,7 +9,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 30s
         static_configs:
-        - targets: ['0.0.0.0:4318']
+        - targets: ['0.0.0.0:443']
 processors:
   attributes/betterstack:
     actions:
