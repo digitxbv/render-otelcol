@@ -1,28 +1,28 @@
 services:
-  - type: web
-    name: prometheus
-    region: frankfurt
-    plan: starter
-    runtime: docker
-    buildFilter:
-      paths:
-      - prometheus/**/*
-    dockerfilePath: ./prometheus/Dockerfile
-    dockerContext: ./prometheus
-    dockerCommand: /bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles --web.enable-remote-write-receiver
-    envVars:
-      # Setting the PORT environment variable tells render that the service is
-      # listening to 9090 It is important to set this value statically as it is
-      # used in the prometheus/prometheus.yml config file.
-      #
-      # See https://github.com/autometrics-dev/render-prometheus for a more
-      # complex blueprint component that will allow different configurations
-      - key: PORT
-        value: 9090
-    disk:
-      name: prometheus-tsdb
-      mountPath: /prometheus
-      sizeGB: 3
+  # - type: web
+  #   name: prometheus
+  #   region: frankfurt
+  #   plan: starter
+  #   runtime: docker
+  #   buildFilter:
+  #     paths:
+  #     - prometheus/**/*
+  #   dockerfilePath: ./prometheus/Dockerfile
+  #   dockerContext: ./prometheus
+  #   dockerCommand: /bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles --web.enable-remote-write-receiver
+  #   envVars:
+  #     # Setting the PORT environment variable tells render that the service is
+  #     # listening to 9090 It is important to set this value statically as it is
+  #     # used in the prometheus/prometheus.yml config file.
+  #     #
+  #     # See https://github.com/autometrics-dev/render-prometheus for a more
+  #     # complex blueprint component that will allow different configurations
+  #     - key: PORT
+  #       value: 9090
+  #   disk:
+  #     name: prometheus-tsdb
+  #     mountPath: /prometheus
+  #     sizeGB: 3
 
   - type: web
     name: otelcol
@@ -38,8 +38,3 @@ services:
     envVars:
       - key: PORT
         value: 4318
-      - key: OTEL_PROM_URL
-        fromService:
-          name: prometheus
-          type: web
-          property: hostport
