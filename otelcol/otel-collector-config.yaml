@@ -24,7 +24,6 @@ exporters:
   prometheusremotewrite/betterstack:
     endpoint: "https://in-otel.logs.betterstack.com/metrics"
 service:
-  extensions: [health_check]
   pipelines:
     metrics/betterstack:
       receivers: [otlp, prometheus] # You can add more metrics receivers here
